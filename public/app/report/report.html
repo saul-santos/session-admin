@@ -1,0 +1,65 @@
+<!-- NAVIGATION BAR -->
+<navbar></navbar>
+
+<!-- CONTENT -->
+<div style="margin: 25px; margin-bottom: 0;">
+    <!--Report Form-->
+    <div class="card" style="border: 0; background-color: transparent;">
+        <div class="card-body">
+            <form ng-submit="vm.getSessions()">
+                <div class="row mr-6">
+                    <div class="col-xl-2 col-lg-3 col-md-3 col-sm-4">
+                        <label><h6 style="margin-bottom: 0; color: #a71212;">Desde:</h6></label>
+                        <div class="input-group date" id="dateFormStart" data-target-input="nearest">
+                            <input type="text" id="dateStart" class="form-control datetimepicker-input" data-target="#dateFormStart" data-toggle="datetimepicker"/>
+                            <div class="input-group-append" data-target="#dateFormStart" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-3 col-md-3 col-sm-4">
+                        <label><h6 style="margin-bottom: 0; color: #a71212;">Hasta:</h6></label>
+                        <div class="input-group date" id="dateFormEnd" data-target-input="nearest">
+                            <input type="text" id="dateEnd" class="form-control datetimepicker-input" data-target="#dateFormEnd" data-toggle="datetimepicker"/>
+                            <div class="input-group-append" data-target="#dateFormEnd" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-3 col-md-3 col-sm-4 align-self-end" style="margin-top: 0.6rem">
+                        <button type="submit" class="form-control btn btn-success"><i class="fas fa-search"></i> Buscar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!--Report Data-->
+    <div class="row" style="margin-top:25px;">
+        <div class="col">
+            <table class="table table-custom" ng-show="vm.sessions.length > 0">
+                <thead>
+                <tr>
+                    <th scope="col">Equipo</th>
+                    <th scope="col">Usuario</th>
+                    <th scope="col">Tiempo inicial</th>
+                    <th scope="col">Tiempo final</th>
+                    <th scope="col">Duración</th>
+                    <th scope="col">Costo</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="session in vm.sessions">
+                    <td>{{ session.equipmentId.name }}</td>
+                    <td>{{ session.userName }}</td>
+                    <td>{{ session.initialTime * 1000 | date: 'short' }}</td>
+                    <td>{{ session.finalTime? (session.finalTime * 1000 | date: 'short') : '' }}</td>
+                    <td>{{ session.finalTime? (session.duration + ' minutos') : ''}}</td>
+                    <td>{{ session.finalTime? (session.cost | currency) : ''}}</td>
+                </tr>
+            </table>
+            <!-- <div class="alert alert-info" role="alert" ng-show="vm.sessions.length == 0">
+                <h6>No hay datos en el reporte</h6>
+            </div> -->
+        </div>
+    </div>
+</div>

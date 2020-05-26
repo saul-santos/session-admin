@@ -1,0 +1,36 @@
+<div class="card" style="margin: 1em">
+        <div class="card-body pb-0" style="padding: 1.2em;">
+            <!-- init session botton -->
+            <button ng-if="!vm.equipment.sessionId" class="btn btn-success top-rigth" ng-click="vm.initSessionSwal()">
+                <i class="fas fa-caret-right"></i>
+            </button>
+            <!-- finalize session botton -->
+            <button ng-if="vm.equipment.sessionId" class="btn btn-danger top-rigth" ng-click="vm.endSessionSwal(vm.session)">
+                <i class="fa fa-cog fa-spin fa-fw fa-lg"></i>
+            </button>
+            <div class="row">
+                <!-- equipment icon -->
+                <div class="col-lg-4">
+                    <img ng-if="vm.equipment.imageUrl" ng-src="{{vm.equipment.imageUrl}}" style="width:5em">
+                    <img ng-if="!vm.equipment.imageUrl" ng-src="/images/console.png" style="width:5em">
+                </div>
+                <div class="col-lg-8">
+                    <!-- equipment name -->
+                    <h5>{{vm.equipment.name}}</h5>
+                    <!-- user name -->
+                    <h6>{{vm.session.userName}}</h6>
+                </div>
+            </div>
+            <div class="row" ng-if="vm.equipment.sessionId">
+                <!-- session cost -->
+                <div class="col text-center">
+                    <h4 class="mb-0">{{vm.session.cost? (vm.session.cost | currency) : ''}}</h4>
+                </div>
+                <!-- session duration -->
+                <div class="col text-center">
+                    <h4 class="mb-0">{{vm.session.duration? (vm.session.duration + ' mins') : ''}}</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

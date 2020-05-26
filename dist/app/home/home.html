@@ -1,0 +1,123 @@
+<!-- NAVIGATION BAR -->
+<navbar></navbar>
+
+<!-- CONTENT -->
+<div style="margin: 25px">
+    <div class="row justify-content-center">
+        <div class="col-lg-4 text-center">
+            <h1 style="color: white; font-family: 'VarelaRound-Regular';">{{vm.time | date: 'mediumTime'}}</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="mb-3 col-lg-4 col-md-6 col-sm-12 col-xs-10 col-11" ng-repeat="e in vm.equipments | orderBy: 'name'">
+            <div class="card-box">
+                <div class="equipment-box text-center">
+                    <!-- equipment icon -->
+                    <img ng-if="e.type === vm.E_TYPES.CONSOLE" src="images/console.png">
+                    <img ng-if="e.type === vm.E_TYPES.PC" src="images/monitor.png">
+                    <!-- equipment name-->
+                    <h4>{{ e.name }}</h4>
+                    <h6>{{ e.sessionId.userName }}</h6>
+                </div>
+                <div class="session-cost text-center">
+                    <h1>{{ e.sessionId.cost | cost }}</h1>
+                    <h6>Costo</h6>
+                </div>
+                <div class="session-times text-center">
+                    <h4>{{ e.timeElapsed | minutes }}</h4>
+                    <h6>Duración</h6>
+                </div>
+                <div class="footer-section text-center" ng-attr-id="footer-section-{{e._id}}" ng-click="vm.sessionModal(e, e.action)">
+                    <h1 style="color: #FFFFFF">{{ e.action }}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MESSAGES CONTENT -->
+<script type="text/ng-template" id="numeric-error">
+    <div ng-message="required">¡Campo requerido!</div>
+    <div ng-message="min">¡Ingresa un número mayor!</div>
+    <div ng-message="max">¡Ingresa un número menor!</div>
+</script>
+
+<!--MODAL INIT SESSION-->
+<div class="modal fade" id="iSessionModal" tabindex="-1" role="dialog" aria-labelledby="iSessionModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="iSessionModalLabel">Iniciar sesión</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form name="iSessionForm" novalidate>
+                <div class="form-group">
+                    <input type="text" name="iSessionUsername" placeholder="Nombre de usuario (opcional)" class="form-control"
+                        ng-model="vm.equipment.sessionId.userName" ng-maxlength="50"
+                        ng-class= "{ '': iSessionForm.iSessionUsername.$pristine,
+                            'is-valid': iSessionForm.iSessionUsername.$dirty && iSessionForm.iSessionUsername.$valid,
+                            'is-invalid ': iSessionForm.iSessionUsername.$dirty && iSessionForm.iSessionUsername.$invalid}">
+
+                    <div ng-show="iSessionForm.iSessionUsername.$dirty" ng-messages="iSessionForm.iSessionUsername.$error" style="color:maroon" role="alert">
+                        <div ng-message="maxlength">¡Ingresa un nombre mas corto!</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="number" name="iSessionDuration" placeholder="Duración en minutos" class="form-control"
+                        ng-model="vm.equipment.sessionId.duration" ng-required="true" ng-min="0" ng-max="999" ng-change="vm.calcCost(vm.equipment.sessionId)"
+                        ng-class= "{ '': iSessionForm.iSessionDuration.$pristine,
+                            'is-valid': iSessionForm.iSessionDuration.$dirty && iSessionForm.iSessionDuration.$valid,
+                            'is-invalid ': iSessionForm.iSessionDuration.$dirty && iSessionForm.iSessionDuration.$invalid}">
+
+                    <div ng-show="iSessionForm.iSessionDuration.$dirty" ng-messages="iSessionForm.iSessionDuration.$error" style="color:maroon" role="alert">
+                        <div ng-messages-include="numeric-error"></div>
+                    </div>
+                </div>
+            </form>
+            <h3 class="text-center" ng-if="vm.equipment.sessionId.cost">
+                Costo: {{ vm.equipment.sessionId.cost }}
+            </h3>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" ng-click="vm.initSession(vm.equipment);">Iniciar</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!--MODAL END SESSION-->
+<div class="modal fade" id="eSessionModal" tabindex="-1" role="dialog" aria-labelledby="eSessionModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="eSessionModalLabel">Finalizar sesión</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="text-center">
+                <h4>Usuario: {{ vm.equipment.sessionId.userName }}</h4>
+            </div>
+            <div class="row">
+                <div class="col text-center">
+                    <h5>Costo</h5>
+                    <h3>{{ vm.equipment.sessionId.cost | cost }}</h3>
+                </div>
+                <div class="col text-center">
+                    <h5>Duración</h5>
+                    <h3>{{ vm.equipment.timeElapsed| minutes }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" ng-click="vm.endSession(vm.equipment);">Finalizar</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        </div>
+        </div>
+    </div>
+</div>

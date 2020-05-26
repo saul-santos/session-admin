@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>sessionManager</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- VENDOR CSS -->
+    <!-- build:css styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/tempusdominus-bootstrap-4/build/css/tempusdominus-bootstrap-4.min.css" />
+    <link rel="stylesheet" href="bower_components/toastr/toastr.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- VENDOR CDN CSS -->
+    <!-- Bootstrap 4 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Font awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+
+    <!-- APP CSS -->
+    <!-- build:css styles/styles.css -->
+    <link rel="stylesheet" href="./stylesheets/style.css">
+    <link rel="stylesheet" href="./app/login/login.css">
+    <!-- endbuild -->
+
+</head>
+<body ng-app="manager" class="background">
+    <!-- CONTENT -->
+    <ui-view></ui-view>
+
+    <!-- VENDOR JS-->
+    <!-- build:js scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/tempusdominus-bootstrap-4/build/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/js-logger/src/logger.js"></script>
+    <script src="bower_components/toastr/toastr.js"></script>
+    <script src="bower_components/popper.js/dist/umd/popper.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- VENDOR CDN JS -->
+    <!-- Bootstrap 4 cdn for JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- Sweet Alert cdn for JS -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <!-- APP JS -->
+    <!-- build:js scripts/angular-app.js -->
+    <script src="app/app.module.js"></script>
+    <script src="app/app.states.js"></script>
+    <script src="app/app.constants.js"></script>
+    <script src="app/app.filters.js"></script>
+    <script src="app/layouts/navbar/navbar.js"></script>
+    <script src="app/login/login.js"></script>
+    <script src="app/home/home.js"></script>
+    <script src="app/report/report.js"></script>
+    <script src="app/settings/settings.js"></script>
+    <script src="app/services/AuthService.js"></script>
+    <script src="app/services/SessionService.js"></script>
+    <script src="app/services/EquipmentService.js"></script>
+    <script src="app/services/FaresService.js"></script>
+    <script src="app/services/AuthInterceptorService.js"></script>
+    <!-- endbuild -->
+
+</body>
+</html>

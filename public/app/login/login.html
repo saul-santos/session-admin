@@ -1,0 +1,40 @@
+<div class="login-box">
+    <div>
+        <img class="login-icon" src="/images/stopwatch.png">
+    </div>
+    <h2 class="login-header">Administrador de sesiones</h2>
+    <form ng-submit="vm.onSubmit(vm.user);" name="userForm" novalidate>
+        <div class="form-group">
+            <input type="email" name="userEmail" placeholder="Correo electronico" class="form-control login-input" ng-model="vm.user.email"
+                ng-required="true"
+                ng-class= "{ '': userForm.userEmail.$pristine,
+                'is-valid': userForm.userEmail.$dirty && userForm.userEmail.$valid,
+                'is-invalid ': userForm.userEmail.$dirty && userForm.userEmail.$invalid}">
+
+            <div ng-show="userForm.userEmail.$dirty" ng-messages="userForm.userEmail.$error" style="color:maroon" role="alert">
+                <div ng-message="required">¡Campo requerido!</div>
+                <div ng-message-default>¡Correo invalido!</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="password" name="userPassword" placeholder="Contraseña" class="form-control login-input" ng-model="vm.user.password"
+                ng-required="true"
+                ng-class= "{ '': userForm.userPassword.$pristine,
+                'is-valid': userForm.userPassword.$dirty && userForm.userPassword.$valid,
+                'is-invalid ': userForm.userPassword.$dirty && userForm.userPassword.$invalid}">
+
+            <div ng-show="userForm.userPassword.$dirty" ng-messages="userForm.userPassword.$error" style="color:maroon" role="alert">
+                <div ng-message="required">¡Campo requerido!</div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success login-button" ng-disabled="userForm.$invalid">Ingresar</button>
+    </form>
+    <!-- <label><a href="">Olvide mi contraseña</a></label> -->
+</div>
+<div class="row justify-content-end">
+    <div class="col-lg-5 col-md-4 align-items-end">
+        Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a>
+        from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+        is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
+    </div> 
+</div>

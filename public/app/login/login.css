@@ -1,0 +1,38 @@
+.login-box {
+    text-align: center;
+    margin: 7% auto;
+    width: 350px;
+    height: 465px;
+    border-radius: 20px;
+    background-color: #FFFFFF;
+    opacity: 0.8;
+}
+
+.login-icon {
+    margin: 20px 100px 0 100px;
+    height: 150px;
+    width: 150px;
+}
+
+.qbtis-icon {
+    margin: -20px 100px 10px 100px;
+    height: 48px;
+    width: 188px;
+}
+
+.login-header {
+    color: #000000;
+    margin-bottom: 30px;
+}
+
+.login-input{
+    text-align: center;
+    margin: 0 25px 20px 25px;
+    width: 300px;
+}
+
+.login-button{
+    width: 300px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
